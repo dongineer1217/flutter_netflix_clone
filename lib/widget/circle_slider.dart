@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_netflix_clone/model/model_movie.dart';
+import 'package:flutter_netflix_clone/screen/detail_screen.dart';
 
 
 class CircleSlider extends StatelessWidget {
@@ -18,7 +19,7 @@ class CircleSlider extends StatelessWidget {
             height: 120,
             child: ListView(
               scrollDirection: Axis.horizontal, // 수평 스크롤
-              children: makeCircleImages(movies),
+              children: makeCircleImages(context, movies),
             ),
           )
         ],
@@ -27,20 +28,30 @@ class CircleSlider extends StatelessWidget {
   }
 }
 
-List<Widget> makeCircleImages(List<Movie> movies) {
+List<Widget> makeCircleImages(BuildContext context, List<Movie> movies) {
   List<Widget> results = [];
   for (var i = 0; i < movies.length; i++) {
     results.add(
-      Container(
-        padding: EdgeInsets.only(right: 10), // 오른쪽 여백
-        child: Align( // CircleAvatar를 왼쪽 정렬
-          alignment: Alignment.centerLeft, // 왼쪽 정렬
-          child: CircleAvatar( // 원형 이미지
-            backgroundImage: AssetImage('images/' + movies[i].poster), // 이미지
-            radius: 48, // 반지름
+      InkWell(
+        onTap: () {
+          Navigator.of(context).push(MaterialPageRoute<Null>(
+          fullscreenDialog: true,
+          builder: (BuildContext context) {
+            return DetailScreen(movie: movies[i]);
+          },
+        ));
+        },
+        child: Container(
+          padding: EdgeInsets.only(right: 10), // 오른쪽 여백
+          child: Align( // CircleAvatar를 왼쪽 정렬
+            alignment: Alignment.centerLeft, // 왼쪽 정렬
+            child: CircleAvatar( // 원형 이미지
+              backgroundImage: AssetImage('images/' + movies[i].poster), // 이미지
+              radius: 48, // 반지름
+            ),
           ),
         ),
-      ),
+      )
     );
   }
   return results;

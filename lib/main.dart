@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_netflix_clone/screen/home_screen.dart';
+import 'package:flutter_netflix_clone/screen/more_screen.dart';
 import 'package:flutter_netflix_clone/widget/bottom_bar.dart';
 
 //flutter 앱의 시작점 (앱이 실행되면 Main 함수가 가장 먼저 실행됨)
@@ -53,7 +54,7 @@ class _MyAppState extends State<MyApp> {
               HomeScreen(),
               Container(child: Center(child: Text('search'),),),
               Container(child: Center(child: Text('save'),),),
-              Container(child: Center(child: Text('list'),),),
+              MoreScreen(),
             ],
           ),
           bottomNavigationBar: Bottom(),

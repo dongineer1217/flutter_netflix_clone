@@ -50,7 +50,7 @@ class Bottom extends StatelessWidget {
                 size: 18,
               ),
               child: Text(
-                '목록', 
+                '더보기', 
                 style: TextStyle(fontSize: 9)
               ),  
             ),
