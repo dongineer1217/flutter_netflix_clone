@@ -1,0 +1,47 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_netflix_clone/model/model_movie.dart';
+
+
+class CircleSlider extends StatelessWidget {
+  final List<Movie> movies;
+  CircleSlider({required this.movies});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(7),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start, // 왼쪽 정렬
+        children: [
+          Text('미리보기'),
+          Container(
+            height: 120,
+            child: ListView(
+              scrollDirection: Axis.horizontal, // 수평 스크롤
+              children: makeCircleImages(movies),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+List<Widget> makeCircleImages(List<Movie> movies) {
+  List<Widget> results = [];
+  for (var i = 0; i < movies.length; i++) {
+    results.add(
+      Container(
+        padding: EdgeInsets.only(right: 10), // 오른쪽 여백
+        child: Align( // CircleAvatar를 왼쪽 정렬
+          alignment: Alignment.centerLeft, // 왼쪽 정렬
+          child: CircleAvatar( // 원형 이미지
+            backgroundImage: AssetImage('images/' + movies[i].poster), // 이미지
+            radius: 48, // 반지름
+          ),
+        ),
+      ),
+    );
+  }
+  return results;
+}
